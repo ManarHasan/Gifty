@@ -1,5 +1,6 @@
 package com.axsos.gifty.models;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.Date;
@@ -149,3 +150,4 @@ public class User {
         this.updatedAt = new Date();
     }
 }
+
