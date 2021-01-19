@@ -1,5 +1,6 @@
 package com.axsos.gifty.models;
 
+main
 import java.util.Date;
 import java.util.List;
 
@@ -57,4 +58,8 @@ public class Provider {
         this.updatedAt = new Date();
     }
     
+
+public class Provider {
+
+master
 }
