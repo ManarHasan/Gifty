@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.axsos.gifty.models.User;
 import com.axsos.gifty.services.UserService;
@@ -33,13 +34,24 @@ public class Users {
         if (result.hasErrors()) {
             return "registrationPage.jsp";
         }
-        userService.saveWithUserRole(user);
+        userService.saveUserWithAdminRole(user);
         return "redirect:/login";
     }
-    
+    @RequestMapping("/admin")
+    public String adminPage(Principal principal, Model model) {
+        String username = principal.getName();
+        model.addAttribute("currentUser", userService.findByUsername(username));
+        return "adminPage.jsp";
+    }
     
     @RequestMapping("/login")
-    public String login() {
+    public String login(@RequestParam(value="error", required=false) String error, @RequestParam(value="logout", required=false) String logout, Model model) {
+        if(error != null) {
+            model.addAttribute("errorMessage", "Invalid Credentials, Please try again.");
+        }
+        if(logout != null) {
+            model.addAttribute("logoutMessage", "Logout Successful!");
+        }
         return "loginPage.jsp";
     }
     @RequestMapping(value = {"/", "/home"})
