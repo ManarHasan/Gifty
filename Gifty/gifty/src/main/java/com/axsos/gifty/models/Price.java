@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +22,8 @@ public class Price {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private int priceTag;
+	@Enumerated(EnumType.ORDINAL)
+	private PriceTags priceTag;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -31,11 +34,25 @@ public class Price {
 	public Price () {}
 
 
-	public Price(int priceTag, Product product) {
+	
+
+
+
+
+
+
+	public Price(PriceTags priceTag, Product product) {
 		super();
 		this.priceTag = priceTag;
 		this.product = product;
 	}
+
+
+
+
+
+
+
 
 
 	public Long getId() {
@@ -47,14 +64,30 @@ public class Price {
 	}
 
 
-	public int getPriceTag() {
+
+
+	public PriceTags getPriceTag() {
 		return priceTag;
 	}
 
 
-	public void setPriceTag(int priceTag) {
+
+
+
+
+
+
+
+	public void setPriceTag(PriceTags priceTag) {
 		this.priceTag = priceTag;
 	}
+
+
+
+
+
+
+
 
 
 	public Date getCreatedAt() {

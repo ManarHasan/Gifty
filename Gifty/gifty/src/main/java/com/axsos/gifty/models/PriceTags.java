@@ -9,7 +9,7 @@ public enum PriceTags {
 
     private final int value;
 
-    PriceTags (final int newValue) {
+    private PriceTags (final int newValue) {
         value = newValue;
     }
 
