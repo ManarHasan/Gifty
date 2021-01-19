@@ -1,4 +1,4 @@
-package com.axsos.gifty1.models;
+package com.axsos.gifty.models;
 
 import java.util.Date;
 import java.util.List;
