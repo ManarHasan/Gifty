@@ -1,4 +1,4 @@
-package com.axsos.gifty.models;
+package com.axsos.gifty1.models;
 
 import java.util.Date;
 
@@ -22,8 +22,7 @@ public class Price {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Enumerated(EnumType.ORDINAL)
-	private int priceTags;
+	private int priceTag;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -32,12 +31,14 @@ public class Price {
 	private Product product;
 	
 	public Price () {}
-	
-	public Price(int priceTags, Product product) {
+
+
+	public Price(int priceTag, Product product) {
 		super();
-		this.priceTags = priceTags;
+		this.priceTag = priceTag;
 		this.product = product;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -47,13 +48,16 @@ public class Price {
 		this.id = id;
 	}
 
-	public int getPriceTags() {
-		return priceTags;
+
+	public int getPriceTag() {
+		return priceTag;
 	}
 
-	public void setPriceTags(int priceTags) {
-		this.priceTags = priceTags;
+
+	public void setPriceTag(int priceTag) {
+		this.priceTag = priceTag;
 	}
+
 
 	public Date getCreatedAt() {
 		return createdAt;

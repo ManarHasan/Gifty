@@ -1,8 +1,8 @@
-package com.axsos.gifty.models;
+package com.axsos.gifty1.models;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
+
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +15,6 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
-    @Email
     private String email;
     private String country;
 
@@ -42,7 +41,7 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, @Email String email, String country, String password, String passwordConfirmation, List<Role> roles, List<Product> products) {
+    public User(String firstName, String lastName, String email, String country, String password, String passwordConfirmation, List<Role> roles, List<Product> products) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

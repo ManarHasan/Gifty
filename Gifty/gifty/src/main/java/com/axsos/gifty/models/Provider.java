@@ -1,11 +1,9 @@
-package com.axsos.gifty.models;
+package com.axsos.gifty1.models;
 
-main
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 
 
 @Entity
@@ -14,7 +12,6 @@ public class Provider {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	@NotEmpty
 	private String name;
 	@Column(updatable=false)
     private Date createdAt;
@@ -49,7 +46,24 @@ public class Provider {
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
-    @PrePersist
+	
+    public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	@PrePersist
     protected void onCreate(){
         this.createdAt = new Date();
     }
@@ -57,9 +71,4 @@ public class Provider {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
-    
-
-public class Provider {
-
-master
 }
