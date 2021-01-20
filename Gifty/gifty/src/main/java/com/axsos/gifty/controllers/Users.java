@@ -34,7 +34,7 @@ public class Users {
         if (result.hasErrors()) {
             return "registrationPage.jsp";
         }
-        userService.saveUserWithAdminRole(user);
+        userService.saveUserWithAdminRole	(user);
         return "redirect:/login";
     }
     @RequestMapping("/admin")
