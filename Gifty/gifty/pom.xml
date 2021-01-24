@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>2.4.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.axsos.gifty</groupId>
@@ -14,12 +14,31 @@
 	<packaging>war</packaging>
 	<name>gifty</name>
 	<description>Gifty project for Spring Boot</description>
-
+<repositories>
+    <repository>
+        <id>spring-releases</id>
+        <name>Spring Releases</name>
+        <url>https://repo.spring.io/libs-release</url>
+    </repository>
+</repositories>
+<pluginRepositories>
+    <pluginRepository>
+        <id>spring-releases</id>
+        <name>Spring Releases</name>
+        <url>https://repo.spring.io/libs-release</url>
+    </pluginRepository>
+</pluginRepositories>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
+	
+	<dependency>
+    <groupId>com.sipios</groupId>
+    <artifactId>spring-search</artifactId>
+    <version>0.2.0</version>
+</dependency>
 		 <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -63,6 +82,10 @@
     <dependency>
         	<groupId>javax.validation</groupId>
         	<artifactId>validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 	</dependencies>
 

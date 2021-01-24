@@ -13,15 +13,23 @@ public class Provider {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	private String name;
+	@Column(nullable = true, length = 64)
+    private String photos;
 	@Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
-    @OneToMany(mappedBy="provider", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="provider", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Product> products;
     
     public Provider() {
     	
     }
+
+	public Provider(String name, String photos, List<Product> products) {
+		this.name = name;
+		this.photos = photos;
+		this.products = products;
+	}
 
 	public Long getId() {
 		return id;
@@ -61,6 +69,20 @@ public class Provider {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public String getPhotos() {
+		return photos;
+	}
+	 @Transient
+	    public String getPhotosImagePath() {
+	        if (photos == null || id == null) return null;
+	         
+	        return "/user-photos/" + id + "/" + photos;
+	    }
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
 
 	@PrePersist

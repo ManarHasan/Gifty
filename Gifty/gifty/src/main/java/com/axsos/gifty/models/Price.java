@@ -1,11 +1,11 @@
 package com.axsos.gifty.models;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,8 +22,8 @@ public class Price {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Enumerated(EnumType.ORDINAL)
-	private PriceTags priceTag;
+	private int priceTag;
+	private int quantity;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -33,26 +33,12 @@ public class Price {
 	
 	public Price () {}
 
+	public Price(int priceTag, Product product, int quantity) {
 
-	
-
-
-
-
-
-
-	public Price(PriceTags priceTag, Product product) {
-		super();
 		this.priceTag = priceTag;
 		this.product = product;
+		this.quantity = quantity;
 	}
-
-
-
-
-
-
-
 
 
 	public Long getId() {
@@ -63,32 +49,17 @@ public class Price {
 		this.id = id;
 	}
 
+	public int getQuantity() {
+		return quantity;
+	}
 
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
-
-	public PriceTags getPriceTag() {
+	public int getPriceTag() {
 		return priceTag;
 	}
-
-
-
-
-
-
-
-
-
-	public void setPriceTag(PriceTags priceTag) {
-		this.priceTag = priceTag;
-	}
-
-
-
-
-
-
-
-
 
 	public Date getCreatedAt() {
 		return createdAt;

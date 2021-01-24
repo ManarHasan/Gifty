@@ -3,6 +3,7 @@ package com.axsos.gifty.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,32 +30,35 @@ public class Product {
 	@NotNull
 	private String title;
 	private String description;
+	private String code;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
-		  name="cart",
+		  name="items",
 		  joinColumns = @JoinColumn(name="product_id"),
-		  inverseJoinColumns = @JoinColumn(name="user_id")
+		  inverseJoinColumns = @JoinColumn(name="cart_id")
 	    )
-	private List<User> users;
+	private List<Cart> carts;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="provider_id")
 	private Provider provider;
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="product")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="product", cascade = CascadeType.REMOVE)
     private List<Price> prices;
 	
 	public Product() {}
 	
-	
-	public Product(String title, String description, List<User> users, Provider provider, List<Price> prices) {
+
+	public Product(String title, String description, List<Cart> carts, Provider provider, List<Price> prices, String code) {
 		this.title = title;
 		this.description = description;
-		this.users = users;
+		this.carts = carts;
 		this.provider = provider;
 		this.prices = prices;
+		this.code = code;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -106,13 +110,23 @@ public class Product {
 	}
 
 
-	public List<User> getUsers() {
-		return users;
+	public List<Cart> getCarts() {
+		return carts;
 	}
 
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public String getCode() {
+		return code;
+	}
+
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
 	}
 
 
